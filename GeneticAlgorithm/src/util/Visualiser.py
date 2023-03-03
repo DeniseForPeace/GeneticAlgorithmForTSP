@@ -22,10 +22,12 @@ class Visualiser:
                'Generation ' + str(population_number) + ' | ' + \
                'Tour Length ' + str(round(tour_length, 2))
 
-        plt.plot(x_axis, y_axis, marker='.')
+        plt.plot(x_axis, y_axis, color="#b3dbd0", marker='.')
+        plt.axis('off')
         plt.title(text, fontname="Roboto Condensed", fontsize=13)
         plt.xlabel('x axis', fontname="Roboto Condensed", fontsize=13)
         plt.ylabel('y axis', fontname="Roboto Condensed", fontsize=13)
+
         return plt
 
     def save_graph(self, tour, population_number, filenames):
@@ -70,7 +72,7 @@ class Visualiser:
     @staticmethod
     def vertical_bar_plot_with_labels(title, x, y, xlabel, ylabel,
                           x_axis_label_steps, bar_thickness,
-                          xlim, ylim, bar_descr_y_coord, tick_labels):
+                          xlim, ylim, bar_descr_y_coord, tick_labels, text):
         fig, ax = plt.subplots(figsize=(16, 9))
         Visualiser.add_data_to_graph(plt, title, xlabel, ylabel)
 
@@ -80,6 +82,8 @@ class Visualiser:
             plt.text(i.get_x() + (i.get_width() / 2.5),  # x coordinate
                      i.get_height() + bar_descr_y_coord,  # y coordinate
                      str(round((i.get_height()), 2)), fontname="Roboto Condensed", fontsize=13)
+        # fig.text(0.82, 0.8, text, color="black", fontname="Roboto Condensed", fontsize=13,
+        #          horizontalalignment='right', verticalalignment='top', alpha=1)
 
         # style graph
         Visualiser.remove_ax_spines_and_ticks(ax)
