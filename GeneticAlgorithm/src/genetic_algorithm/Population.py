@@ -37,10 +37,9 @@ class Population:
     def __repr__(self):
         return str(self.genomes)
 
-
     def get_fittest_genome(self):
         fittest = self.genomes[0]  # 1st genome
-        for i in range(0, len(self.genomes)):  # iterate through all genomes
-            if fittest.get_fitness() <= self.genomes[i].get_fitness():  # safe if fitness is higher
-                fittest = self.genomes[i]
+        for g in self.genomes:
+            if fittest.get_fitness() <= g.get_fitness():  # safe if fitness is higher
+                fittest = g
         return fittest
