@@ -6,7 +6,7 @@ import numpy as np
 def write(algo, population_size, selection, crossover, mutation):
     save_path = '../data/statistics/'
     file_name = "population-size-" + str(population_size) + "_" + \
-                "num-generations-" + str(algo.num_gens) + "_" + \
+                "num-generations-" + str(algo.number_of_generations) + "_" + \
                 str(algo.elite) + "-elite-genomes_" + \
                 selection + "-selection_" + mutation + "-mutation" + ".txt"
 
@@ -15,20 +15,20 @@ def write(algo, population_size, selection, crossover, mutation):
 
     f.write("\nAll targeted cities: " + str(algo.genes))
     f.write("\nPopulation size: " + str(population_size))
-    f.write("\nNumber of generations: " + str(algo.num_gens))
+    f.write("\nNumber of generations: " + str(algo.number_of_generations))
     f.write("\nEvolution stopped at generation number: " + str(algo.stopped_at_gen))
     if algo.elite > 0:
         f.write("\nElitism activated. Number of elite genomes: " + str(algo.elite))
     else:
         f.write("\nNo elitism.")
     f.write("\nSelection Type: " + selection)
-    if float(algo.no_p) > 0.0:
-        f.write("\nPercentage of fittest evolved genomes: " + algo.no_p)
+    if float(algo.p) > 0.0:
+        f.write("\nPercentage of fittest evolved genomes: " + str(algo.p))
     if int(algo.tournament_size) > 0:
         f.write("\nNumber of competing genomes in one tournament: " + str(algo.tournament_size))
     f.write("\nCrossover type: " + crossover)
     f.write("\nMutation Type: " + mutation)
-    f.write("\nMutation rate: " + algo.mutation_rate)
+    f.write("\nMutation rate: " + str(algo.mutation_rate))
     f.write("\nBest Distance before: " + str(algo.distance_before))
     f.write("\nBest Distance after: " + str(algo.distance_after))
     f.write("\nBest Route: " + str(algo.best_route))
@@ -59,4 +59,3 @@ def write_experiment_results(title, num_iterations, pop_size, num_generations,
     f.write("\ny_results: " + str(np.array(y_results)))
 
     f.close()
-
